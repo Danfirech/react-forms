@@ -1,4 +1,16 @@
 import React from "react";
+import { useFrom } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers";
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+  firstname: yup.string().required(),
+  lastname: yup.string().required(),
+  email: yup.string().email(),
+  age: yup.number().positive().integer(),
+  password: yup.string().min(4).max(15).required(),
+  confirmPassword: yup.string().oneOf([yup.ref("password"), null]),
+});
 
 function Form() {
   return (
