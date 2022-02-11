@@ -1,5 +1,5 @@
 import React from "react";
-import { useFrom } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
 
@@ -13,20 +13,51 @@ const schema = yup.object().shape({
 });
 
 function Form() {
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const submitForm = (data) => {};
   return (
     <div>
       <div>
-        <form>
-          <input type="text" name="firstName" placeholder="First Name...." />
-          <input type="text" name="lastName" placeholder="Last Name...." />
-          <input type="text" name="email" placeholder="Email...." />
-          <input type="text" name="age" placeholder="Age...." />
-          <input type="text" name="password" placeholder="Password...." />
+        <form onSubmit={handleSubmit(submitForm)}>
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First Name...."
+            ref={register}
+          />
+          <p>{errors.firstName?.message}</p>
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last Name...."
+            ref={register}
+          />
+          <p>{errors.lasName?.message}</p>
+          <input
+            type="text"
+            name="email"
+            placeholder="Email...."
+            ref={register}
+          />
+          <p>{errors.email?.message}</p>
+          <input type="text" name="age" placeholder="Age...." ref={register} />
+          <input
+            type="text"
+            name="password"
+            placeholder="Password...."
+            ref={register}
+          />
+          <p>{errors.password?.message}</p>
           <input
             type="text"
             name="confirmPassword"
             placeholder="Confirm Password...."
+            ref={register}
           />
+          <p>{errors.confirmPassword?.message}</p>
           <input type="submit" id="submit" />
         </form>
       </div>
