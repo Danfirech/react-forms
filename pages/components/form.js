@@ -5,19 +5,17 @@ function Form() {
     <div>
       <div>
         <form>
+          <input type="text" name="firstName" placeholder="First Name...." />
+          <input type="text" name="lastName" placeholder="Last Name...." />
+          <input type="text" name="email" placeholder="Email...." />
+          <input type="text" name="age" placeholder="Age...." />
+          <input type="text" name="password" placeholder="Password...." />
           <input
             type="text"
-            name="firstName"
-            placeholder="First Name...."
-          ></input>
-          <input
-            type="text"
-            name="lastName"
-            placeholder="Last Name...."
-          ></input>
-          <input type="text" name="email" placeholder="Email...."></input>
-          <input type="text" name="age" placeholder="Age...."></input>
-          <input type="text" name="passwprd" placeholder="Password...."></input>
+            name="confirmPassword"
+            placeholder="Confirm Password...."
+          />
+          <input type="submit" id="submit" />
         </form>
       </div>
     </div>
