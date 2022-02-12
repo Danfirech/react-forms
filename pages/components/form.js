@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 const schema = yup.object().shape({
@@ -13,11 +13,17 @@ const schema = yup.object().shape({
 });
 
 function Form() {
-  const { register, handleSubmit, errors } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const submitForm = (data) => {};
+  const submitForm = (data) => {
+    console.log(data);
+  };
   return (
     <div>
       <div>
@@ -26,38 +32,43 @@ function Form() {
             type="text"
             name="firstName"
             placeholder="First Name...."
-            ref={register}
+            {...register("firstname")}
           />
           <p>{errors.firstName?.message}</p>
           <input
             type="text"
             name="lastName"
             placeholder="Last Name...."
-            ref={register}
+            {...register("lastName")}
           />
-          <p>{errors.lasName?.message}</p>
+          <p>{errors.lastName?.message}</p>
           <input
             type="text"
             name="email"
             placeholder="Email...."
-            ref={register}
+            {...register("email")}
           />
           <p>{errors.email?.message}</p>
-          <input type="text" name="age" placeholder="Age...." ref={register} />
+          <input
+            type="text"
+            name="age"
+            placeholder="Age...."
+            {...register("age")}
+          />
           <input
             type="text"
             name="password"
             placeholder="Password...."
-            ref={register}
+            {...register("password")}
           />
           <p>{errors.password?.message}</p>
           <input
             type="text"
             name="confirmPassword"
             placeholder="Confirm Password...."
-            ref={register}
+            {...register("confirmPassword")}
           />
-          <p>{errors.confirmPassword?.message}</p>
+          <p>{errors.confirmPassword && "Passwords should match"}</p>
           <input type="submit" id="submit" />
         </form>
       </div>
