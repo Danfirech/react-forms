@@ -39,7 +39,7 @@ function Form() {
             type="text"
             name="lastName"
             placeholder="Last Name...."
-            {...register("lastName")}
+            {...register("lastname")}
           />
           <p>{errors.lastName?.message}</p>
           <input
